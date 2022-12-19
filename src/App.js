@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import './App.css';
 import Square from './components/Square';
 import React from 'react';
@@ -6,6 +5,7 @@ import darkenColor from './utils';
 
 function App() {
 
+  // If you change these, make sure to also change the App.css
   const rows = 20
   const cols = 20
 
@@ -22,40 +22,16 @@ function App() {
     />)
   )
 
-  // Monitor p key to activate painting
-  const paintPress = useKeyPress("p")
+  // If the grid-container is clicked on, change to paint mode
+  const [paintMode, setPaintMode] = React.useState(false)
 
-  // Key press hook
-  function useKeyPress(targetKey) {
-    const [keyPressed, setKeyPressed] = React.useState(false)
-
-    function downHandler({ key }) {
-      if (key === targetKey) {
-        setKeyPressed(true);
-      }
-    }
-
-    function upHandler({ key }) {
-      if (key === targetKey) {
-        setKeyPressed(false);
-      }
-    }
-
-    React.useEffect(() => {
-      window.addEventListener("keydown", downHandler)
-      window.addEventListener("keyup", upHandler)
-      // Remove event listeners on cleanup
-      return () => {
-        window.removeEventListener("keydown", downHandler)
-        window.removeEventListener("keyup", upHandler)
-      }
-    }, []) // only run on mount and unmount
-
-    return keyPressed
+  // Causes a bug if mouse, while clicked, is dragged out of the window (or div container)
+  function activatePaintMode(on) {
+    setPaintMode(on ? true : false)
   }
   
   function changeColor(row, col) {
-    if (paintPress) {
+    if (paintMode) {
       setSquares(prevBoard => prevBoard.map(
       square => {
         // Fill center, top, bottom, left, right squares
@@ -87,7 +63,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="square-container">
+      <div className="square-container" onMouseDown={() => activatePaintMode(true)} onMouseUp={() => activatePaintMode(false)}>
         {squareElements}
       </div>
     </div>
