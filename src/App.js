@@ -21,17 +21,42 @@ function App() {
       changeColor={() => changeColor(square.row, square.col)}
     />)
   )
-  
-  /*
-  function changeColor(id) {
-    setSquares(prevBoard => prevBoard.map(
-      square => square.id === id ? {...square, color: darkenColor(square.color)} : square
-    ))
-    console.log(`Changed color of Square ${id}`)
+
+  // Monitor p key to activate painting
+  const paintPress = useKeyPress("p")
+
+  // Key press hook
+  function useKeyPress(targetKey) {
+    const [keyPressed, setKeyPressed] = React.useState(false)
+
+    function downHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(true);
+      }
+    }
+
+    function upHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(false);
+      }
+    }
+
+    React.useEffect(() => {
+      window.addEventListener("keydown", downHandler)
+      window.addEventListener("keyup", upHandler)
+      // Remove event listeners on cleanup
+      return () => {
+        window.removeEventListener("keydown", downHandler)
+        window.removeEventListener("keyup", upHandler)
+      }
+    }, []) // only run on mount and unmount
+
+    return keyPressed
   }
-  */
+  
   function changeColor(row, col) {
-    setSquares(prevBoard => prevBoard.map(
+    if (paintPress) {
+      setSquares(prevBoard => prevBoard.map(
       square => {
         // Fill center, top, bottom, left, right squares
         const inAdjRow = [row - 1, row + 1].includes(square.row)
@@ -44,8 +69,7 @@ function App() {
           return square
         }
       }
-    ))
-    //console.log(`Changed color of Square ${id}`)
+    ))}
   }
 
   function newBoard() {
@@ -71,25 +95,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          What a wonderful day!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-*/
