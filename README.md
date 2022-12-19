@@ -1,3 +1,8 @@
+# This app generates a 20x20 grid which can be "painted" on by clicking and dragging the mouse.
+
+
+# 'Create React App' default readme is below:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
