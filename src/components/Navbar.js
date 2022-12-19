@@ -9,6 +9,7 @@ export default function Navbar(props) {
             <button onClick={() => props.changePaintColor("yellow")}>Click for yellow!</button>
             <button onClick={() => props.changePaintColor("all")}>Click for grey!</button>
             <button onClick={() => props.changePaintColor("white")}>Click for white!</button>
+            <button onClick={props.resetBoard}>Reset board!</button>
         </div>
     )
 }

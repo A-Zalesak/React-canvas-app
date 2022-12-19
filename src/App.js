@@ -11,7 +11,9 @@ function App() {
   const rows = 15
   const cols = 20
 
-  const [squares, setSquares] = React.useState(newBoard())
+  const [squares, setSquares] = React.useState(
+    JSON.parse(localStorage.getItem("squares")) || newBoard()
+  )
 
   const squareElements = squares.map(square => (
     <Square
@@ -29,12 +31,7 @@ function App() {
   // Paint mode while mouse is down
   const [paintMode, setPaintMode] = React.useState(false)
 
-  // Has a new bug!
-  // Mousedown -> leave -> return -> Mouseup. Mousedown causes warning symbol.
-  // Thereafter, dragging causes painting without Mousedown until click.
-  // Perhaps I have to use "event.preventDefault()" somehow...
-  function activatePaintMode(on, message) {
-    console.log(message)
+  function activatePaintMode(on) {
     setPaintMode(on ? true : false)
     console.log(`Set paintMode to ${on}`)
   }
@@ -79,19 +76,28 @@ function App() {
     return newBoard
   }
 
+  function resetBoard() {
+    setSquares(newBoard())
+  }
+
+  // Save notes
+  React.useEffect(() => {
+    localStorage.setItem("squares", JSON.stringify(squares))
+  }, [squares])
+
   function handleMouseDown(event) {
     event.preventDefault();
-    activatePaintMode(true, "mouseDown")
+    activatePaintMode(true)
   }
 
   function handleMouseUp(event) {
     event.preventDefault();
-    activatePaintMode(false, "mouseUp")
+    activatePaintMode(false)
   }
 
   function handleMouseLeave(event) {
     event.preventDefault();
-    activatePaintMode(false, "mouseLeave")
+    activatePaintMode(false)
   }
 
 /*
@@ -102,7 +108,7 @@ onMouseDown={() => activatePaintMode(true, "mouseDown")}
 
   return (
     <div className="App">
-      <Navbar changePaintColor={changePaintColor}/>
+      <Navbar changePaintColor={changePaintColor} resetBoard={resetBoard}/>
       <div className="square-container"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
