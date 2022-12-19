@@ -15,10 +15,25 @@ function rgbToHex(rgb) {
     return '#' + result
 }
 
-export default function darkenColor(hex) {
+export default function darkenColor(hex, paintColor) {
     const rgb = hexToRgb(hex)
-    const result = [rgb.r, rgb.g, rgb.b].map(x => {
-        return Math.max(0, x - 30)
-    })
+    //console.log(paintColor)
+    let result;
+    if (paintColor === "all") {
+        result = [rgb.r, rgb.g, rgb.b].map(x => {
+            return Math.max(0, x - 30)
+        })
+    } else if (paintColor === "white") {
+        result = [rgb.r, rgb.g, rgb.b].map(x => {
+            return Math.min(255, x + 30)
+        })
+    } else {
+        result = [
+            paintColor === "cyan" ? Math.max(0, rgb.r - 30) : rgb.r,
+            paintColor === "magenta" ? Math.max(0, rgb.g - 30) : rgb.g,
+            paintColor === "yellow" ? Math.max(0, rgb.b - 30) : rgb.b
+        ]
+    }
+    //console.log(`Result is ${result}`)
     return rgbToHex(result)
 }
