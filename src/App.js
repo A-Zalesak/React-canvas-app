@@ -6,7 +6,7 @@ import darkenColor from './utils';
 function App() {
 
   // If you change these, make sure to also change the App.css
-  const rows = 20
+  const rows = 15
   const cols = 20
 
   const [squares, setSquares] = React.useState(newBoard())
@@ -25,7 +25,6 @@ function App() {
   // If the grid-container is clicked on, change to paint mode
   const [paintMode, setPaintMode] = React.useState(false)
 
-  // Causes a bug if mouse, while clicked, is dragged out of the window (or div container)
   function activatePaintMode(on) {
     setPaintMode(on ? true : false)
   }
@@ -63,7 +62,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="square-container" onMouseDown={() => activatePaintMode(true)} onMouseUp={() => activatePaintMode(false)}>
+      <div className="square-container"
+      onMouseDown={() => activatePaintMode(true)}
+      onMouseUp={() => activatePaintMode(false)} 
+      onMouseLeave={() => activatePaintMode(false)}>
         {squareElements}
       </div>
     </div>
