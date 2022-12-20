@@ -4,6 +4,10 @@ import React from 'react';
 import darkenColor from './utils';
 import Navbar from './components/Navbar';
 
+// New functionality to add:
+// When mouse leaves while down, continue painting when it re-enters
+// Also, allow single click painting
+
 function App() {
   //console.log("Re-ran App")
 
@@ -26,7 +30,7 @@ function App() {
     />)
   )
 
-  const [paintColor, setPaintColor] = React.useState("all")
+  const [paintColor, setPaintColor] = React.useState("grey")
 
   // Paint mode while mouse is down
   const [paintMode, setPaintMode] = React.useState(false)
@@ -37,11 +41,11 @@ function App() {
   }
   
   function changePaintColor(color) {
-    if (["all", "cyan", "magenta", "yellow", "white"].includes(color)) {
+    if (["grey", "cyan", "magenta", "yellow", "white"].includes(color)) {
       setPaintColor(color)
-      console.log(`Set paint color to ${color}`)
+      //console.log(`Set paint color to ${color}`)
     } else {
-      console.log(`Error: ${color} is not a valid input`)
+      //console.log(`Error: ${color} is not a valid input`)
     }
   }
 
@@ -100,12 +104,6 @@ function App() {
     activatePaintMode(false)
   }
 
-/*
-onMouseDown={() => activatePaintMode(true, "mouseDown")}
-      onMouseUp={() => activatePaintMode(false, "mouseUp")} 
-      onMouseLeave={() => activatePaintMode(false, "mouseLeave")}
-*/
-
   return (
     <div className="App">
       <Navbar changePaintColor={changePaintColor} resetBoard={resetBoard}/>
@@ -116,6 +114,7 @@ onMouseDown={() => activatePaintMode(true, "mouseDown")}
       >
         {squareElements}
       </div>
+      <button className="button--reset" onClick={resetBoard}>Reset board</button>
     </div>
   );
 }

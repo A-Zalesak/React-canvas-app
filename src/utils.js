@@ -19,13 +19,13 @@ export default function darkenColor(hex, paintColor) {
     const rgb = hexToRgb(hex)
     //console.log(paintColor)
     let result;
-    if (paintColor === "all") {
+    if (paintColor === "grey") {
         result = [rgb.r, rgb.g, rgb.b].map(x => {
-            return Math.max(0, x - 30)
+            return Math.max(0, x - 15)
         })
     } else if (paintColor === "white") {
         result = [rgb.r, rgb.g, rgb.b].map(x => {
-            return Math.min(255, x + 30)
+            return Math.min(255, x + 15)
         })
     } else {
         result = [

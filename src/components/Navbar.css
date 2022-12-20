@@ -1,0 +1,20 @@
+.button--cyan {
+    background-color: cyan;
+}
+
+.button--magenta {
+    background-color: magenta;
+}
+
+.button--yellow {
+    background-color: yellow;
+}
+
+.button--grey {
+    background-color: grey;
+    color: antiquewhite;
+}
+
+.button--white {
+    background-color: white;
+}

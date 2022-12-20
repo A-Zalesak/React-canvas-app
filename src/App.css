@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  background-color: deepskyblue;
 }
 
 .square-container {
@@ -8,4 +7,5 @@
   grid-template-columns: repeat(20, 5%);
   max-width: 500px;
   max-height: 500px;
+  margin: 20px auto;
 }
