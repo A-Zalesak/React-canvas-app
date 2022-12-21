@@ -3,6 +3,7 @@ import Square from './components/Square';
 import React from 'react';
 import darkenColor from './utils';
 import Navbar from './components/Navbar';
+import './components/Button.css'
 
 // New functionality to add:
 // When mouse leaves while down, continue painting when it re-enters
@@ -37,7 +38,7 @@ function App() {
 
   function activatePaintMode(on) {
     setPaintMode(on ? true : false)
-    console.log(`Set paintMode to ${on}`)
+    //console.log(`Set paintMode to ${on}`)
   }
   
   function changePaintColor(color) {
@@ -114,7 +115,7 @@ function App() {
       >
         {squareElements}
       </div>
-      <button className="button--reset" onClick={resetBoard}>Reset board</button>
+      <button className="button-52" id="button--reset" onClick={resetBoard}>Reset board</button>
     </div>
   );
 }

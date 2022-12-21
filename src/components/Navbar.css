@@ -1,20 +1,19 @@
-.button--cyan {
+#button--cyan:after {
     background-color: cyan;
 }
 
-.button--magenta {
+#button--magenta:after {
     background-color: magenta;
 }
 
-.button--yellow {
+#button--yellow:after {
     background-color: yellow;
 }
 
-.button--grey {
+#button--grey:after {
     background-color: grey;
-    color: antiquewhite;
 }
 
-.button--white {
+#button--white:after {
     background-color: white;
 }

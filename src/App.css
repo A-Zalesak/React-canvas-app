@@ -9,3 +9,11 @@
   max-height: 500px;
   margin: 20px auto;
 }
+
+#button--reset {
+  color: white;
+}
+
+#button--reset:after {
+  background-color: black;
+}

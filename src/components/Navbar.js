@@ -1,15 +1,51 @@
 import React from "react"
 import './Navbar.css'
+import './Button.css'
 
 export default function Navbar(props) {
+
+    const rgbColors = [
+        {id: 1, color: "cyan"},
+        {id: 2, color: "magenta"},
+        {id: 3, color: "yellow"}
+    ]
+
+    const greyWhiteColors = [
+        {id: 1, color: "grey"},
+        {id: 2, color: "white"}
+    ]
+
+    const rgbElements = rgbColors.map(color => (
+        <button
+        key={color.id}
+        className="button-52"
+        id={`button--${color.color}`}
+        onClick={() => props.changePaintColor(color.color)}
+        >
+            {color.color.charAt(0).toUpperCase() + color.color.slice(1)}
+        </button>
+    ))
+
+    const greyWhiteElements = greyWhiteColors.map(color => (
+        <button
+        key={color.id}
+        className="button-52"
+        id={`button--${color.color}`}
+        onClick={() => props.changePaintColor(color.color)}
+        >
+            {color.color.charAt(0).toUpperCase() + color.color.slice(1)}
+        </button>
+    ))
+
     return(
         <nav>
             <h1>Let's Be Creative!</h1>
-            <button className="button--cyan" onClick={() => props.changePaintColor("cyan")}>Cyan</button>
-            <button className="button--magenta" onClick={() => props.changePaintColor("magenta")}>Magenta</button>
-            <button className="button--yellow" onClick={() => props.changePaintColor("yellow")}>Yellow</button>
-            <button className="button--grey" onClick={() => props.changePaintColor("grey")}>Grey</button>
-            <button className="button--white" onClick={() => props.changePaintColor("white")}>White</button>
+            <div>
+                {rgbElements}
+            </div>
+            <div>
+                {greyWhiteElements}
+            </div>
         </nav>
     )
 }
