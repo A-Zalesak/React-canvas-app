@@ -7,7 +7,11 @@ export default function Square(props) {
     const styles = {backgroundColor: props.color}
 
     return(
-        <div className="square" onMouseOver={props.changeColor} style={styles}>
+        <div
+        className="square"
+        onMouseOver={props.changeColorHover}
+        onClick={props.changeColorClick}
+        style={styles}>
         </div>
     )
 }

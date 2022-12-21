@@ -7,7 +7,6 @@ import './components/Button.css'
 
 // New functionality to add:
 // When mouse leaves while down, continue painting when it re-enters
-// Also, allow single click painting
 
 function App() {
   //console.log("Re-ran App")
@@ -27,7 +26,8 @@ function App() {
       col={square.col}
       value={square.id}
       color={square.color}
-      changeColor={() => changeColor(square.row, square.col)}
+      changeColorHover={() => changeColor(square.row, square.col)}
+      changeColorClick={() => changeColor(square.row, square.col, true)}
     />)
   )
 
@@ -50,8 +50,8 @@ function App() {
     }
   }
 
-  function changeColor(row, col) {
-    if (paintMode) {
+  function changeColor(row, col, isFromClick=false) {
+    if (paintMode || isFromClick) {
       setSquares(prevBoard => prevBoard.map(
       square => {
         // Fill center, top, bottom, left, right squares
