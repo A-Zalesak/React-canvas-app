@@ -15,10 +15,19 @@ export default function Navbar(props) {
         {id: 2, color: "white"}
     ]
 
+    // Button-pressed will override for the current color
+    function buttonClasses(color) {
+        const holdButtonDown = props.currentColor === color ? " button-pressed" : ""
+        return `button-52 ${holdButtonDown}`
+    }
+
+    //console.log(buttonClasses("cyan"))
+    //console.log(props.currentColor)
+
     const rgbElements = rgbColors.map(color => (
         <button
         key={color.id}
-        className="button-52"
+        className={buttonClasses(color.color)}
         id={`button--${color.color}`}
         onClick={() => props.changePaintColor(color.color)}
         >
@@ -29,7 +38,7 @@ export default function Navbar(props) {
     const greyWhiteElements = greyWhiteColors.map(color => (
         <button
         key={color.id}
-        className="button-52"
+        className={buttonClasses(color.color)}
         id={`button--${color.color}`}
         onClick={() => props.changePaintColor(color.color)}
         >

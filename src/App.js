@@ -107,7 +107,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar changePaintColor={changePaintColor} resetBoard={resetBoard}/>
+      <Navbar
+      changePaintColor={changePaintColor}
+      resetBoard={resetBoard}
+      currentColor={paintColor}/>
       <div className="square-container"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}

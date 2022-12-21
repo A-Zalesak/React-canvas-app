@@ -10,8 +10,8 @@
   cursor: pointer;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
-  user-select: none;
-  -webkit-user-select: none;
+  user-select: all;
+  -webkit-user-select: all;
   touch-action: manipulation;
   margin: 5px;
 }
@@ -36,4 +36,10 @@
   .button-52 {
     padding: 13px 50px 13px;
   }
+}
+
+.button-pressed:after {
+  content: "";
+  top: 0px;
+  left: 0px;
 }
