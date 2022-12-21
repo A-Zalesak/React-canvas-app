@@ -1,10 +1,15 @@
 import React from 'react';
-import './Square.css';
 
 
 export default function Square(props) {
 
-    const styles = {backgroundColor: props.color}
+    const styles = {
+        backgroundColor: props.color,
+        borderWidth: props.showGridlines ? "1px" : "0px",
+        padding: props.showGridlines ? "10px" : "11px",
+        borderStyle: "solid",
+        borderColor: "black"
+    }
 
     return(
         <div

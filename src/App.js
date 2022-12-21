@@ -3,14 +3,11 @@ import Square from './components/Square';
 import React from 'react';
 import darkenColor from './utils';
 import Navbar from './components/Navbar';
-import './components/Button.css'
+import './components/Button.css';
+import Footer from './components/Footer'
 
-// New functionality to add:
-// When mouse leaves while down, continue painting when it re-enters
-// My solution may just be to expand mouse enter/leave to the whole App.
 
 function App() {
-  //console.log("Re-ran App")
 
   // If you change these, make sure to also change the App.css
   const rows = 15
@@ -20,6 +17,8 @@ function App() {
     JSON.parse(localStorage.getItem("squares")) || newBoard()
   )
 
+  const [showGridlines, setShowGridlines] = React.useState(true)
+
   const squareElements = squares.map(square => (
     <Square
       key={square.id}
@@ -27,6 +26,7 @@ function App() {
       col={square.col}
       value={square.id}
       color={square.color}
+      showGridlines={showGridlines}
       changeColorHover={() => changeColor(square.row, square.col)}
       changeColorClick={() => changeColor(square.row, square.col, true)}
     />)
@@ -46,11 +46,7 @@ function App() {
   }
 
   function changeColor(row, col, isFromClick=false) {
-    console.log(`--PaintMode: ${paintMode}`)
-    console.log(`--isFromClick: ${isFromClick}`)
-    console.log(paintMode || isFromClick)
     if (paintMode || isFromClick) {
-      console.log("Running this code")
       setSquares(prevBoard => prevBoard.map(
       square => {
         // Fill center, top, bottom, left, right squares
@@ -104,6 +100,22 @@ function App() {
     activatePaintMode(false)
   }
 
+  function handleGridlinesButtonClick() {
+    setShowGridlines(prevState => !prevState)
+  }
+
+  // Button-pressed will override and keep it looking pressed
+  const gridlineButtonClasses = `button-52 ${showGridlines ? "button-pressed" : ""}`
+
+  const gridlinesButtonElement = (
+    <button
+    className={gridlineButtonClasses}
+    id="button--gridlines"
+    onClick={handleGridlinesButtonClick}>
+      {showGridlines ? "Hide gridlines" : "Show gridlines"}
+    </button>
+  )
+
   return (
     <div
     className="App"
@@ -117,7 +129,9 @@ function App() {
       <div className="square-container">
         {squareElements}
       </div>
+      {gridlinesButtonElement}
       <button className="button-52" id="button--reset" onClick={resetBoard}>Reset board</button>
+      <Footer />
     </div>
   );
 }

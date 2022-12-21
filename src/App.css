@@ -10,10 +10,10 @@
   margin: 20px auto;
 }
 
-#button--reset {
+#button--reset, #button--gridlines {
   color: white;
 }
 
-#button--reset:after {
+#button--reset:after, #button--gridlines:after {
   background-color: black;
 }

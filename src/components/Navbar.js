@@ -21,9 +21,6 @@ export default function Navbar(props) {
         return `button-52 ${holdButtonDown}`
     }
 
-    //console.log(buttonClasses("cyan"))
-    //console.log(props.currentColor)
-
     const rgbElements = rgbColors.map(color => (
         <button
         key={color.id}
