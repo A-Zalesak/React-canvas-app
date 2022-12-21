@@ -8,8 +8,8 @@ export default function Footer() {
                 &copy;2022 Andrew Zalesak
             </div>
             <div className="professional-links">
-                <a href="https://github.com/A-Zalesak">Github</a>
-                <a href="https://www.linkedin.com/in/andrew-zalesak/">LinkedIn</a>
+                <a className="github-link" href="https://github.com/A-Zalesak">Github</a>
+                <a className="linkedin-link" href="https://www.linkedin.com/in/andrew-zalesak/">LinkedIn</a>
             </div>
       </footer>
     )

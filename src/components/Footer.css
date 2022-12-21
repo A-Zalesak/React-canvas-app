@@ -1,7 +1,12 @@
 footer {
     margin: 10px;
+    padding-left: 18px;
 }
 
-.professional-links > a {
-    margin: 10px;
+.github-link {
+    padding-left: 18px;
+}
+
+.linkedin-link {
+    padding-left: 10px;
 }
