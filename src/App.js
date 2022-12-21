@@ -7,6 +7,7 @@ import './components/Button.css'
 
 // New functionality to add:
 // When mouse leaves while down, continue painting when it re-enters
+// My solution may just be to expand mouse enter/leave to the whole App.
 
 function App() {
   //console.log("Re-ran App")
@@ -38,20 +39,18 @@ function App() {
 
   function activatePaintMode(on) {
     setPaintMode(on ? true : false)
-    //console.log(`Set paintMode to ${on}`)
   }
   
   function changePaintColor(color) {
-    if (["grey", "cyan", "magenta", "yellow", "white"].includes(color)) {
-      setPaintColor(color)
-      //console.log(`Set paint color to ${color}`)
-    } else {
-      //console.log(`Error: ${color} is not a valid input`)
-    }
+    setPaintColor(color)
   }
 
   function changeColor(row, col, isFromClick=false) {
+    console.log(`--PaintMode: ${paintMode}`)
+    console.log(`--isFromClick: ${isFromClick}`)
+    console.log(paintMode || isFromClick)
     if (paintMode || isFromClick) {
+      console.log("Running this code")
       setSquares(prevBoard => prevBoard.map(
       square => {
         // Fill center, top, bottom, left, right squares
@@ -97,7 +96,7 @@ function App() {
 
   function handleMouseUp(event) {
     event.preventDefault();
-    activatePaintMode(false)
+    activatePaintMode(false)  
   }
 
   function handleMouseLeave(event) {
@@ -106,16 +105,16 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div
+    className="App"
+    onMouseLeave={handleMouseLeave}
+    onMouseDown={handleMouseDown}
+    onMouseUp={handleMouseUp}>
       <Navbar
       changePaintColor={changePaintColor}
       resetBoard={resetBoard}
       currentColor={paintColor}/>
-      <div className="square-container"
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      >
+      <div className="square-container">
         {squareElements}
       </div>
       <button className="button-52" id="button--reset" onClick={resetBoard}>Reset board</button>
