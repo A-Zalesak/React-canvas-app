@@ -17,7 +17,7 @@ function App() {
     JSON.parse(localStorage.getItem("squares")) || newBoard()
   )
 
-  const [showGridlines, setShowGridlines] = React.useState(true)
+  const [showGridlines, setShowGridlines] = React.useState(false)
 
   const squareElements = squares.map(square => (
     <Square
