@@ -1,6 +1,11 @@
-# This app generates a 20x20 grid which can be "painted" on by clicking and dragging the mouse.
+# This app generates a 15x20 grid which can be "painted" on by clicking and dragging the mouse.
+# The image is saved to local storage so you can pick up where you left off after refreshing the page!
+
+[App screenshot](./images/canvas-screenshot.png)
 
 
+
+-----
 # 'Create React App' default readme is below:
 
 # Getting Started with Create React App
